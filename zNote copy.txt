@@ -1,0 +1,72 @@
+1
+flow:    action(saga)-> reducer-> store-> view-> action...
+folder:  action,const,reducer,RootReducer,store
+
+
+npm i 
+redux       {createStore} {combineReducers}
+react-redux {provider} {useDispatch} {useSelector}
+redux-saga
+-------------------------
+
+
+2 index.js
+import {provider} from react-redux
+import store ...
+
+<Provider store={store}>
+<App/>
+<Provider>
+
+
+3 store.js
+import {createStore} from "redux"
+import RootReducer...
+
+const store=createStore(RootReducer)
+export default store
+
+
+4 const.js
+export xxAddToCart ="xxAddToCart"
+
+
+5 action.js
+import {xxAddToCart} from "./const.js"
+
+export const handleAddToCart=(obj)=>{
+    console.log(obj)
+    return{
+        type:xxAddToCart,
+        data:obj
+    }
+}
+
+
+6 app.js
+import {handleAddToCart} from "./redux/action.js"
+import {useDispatch} from "react-redux"
+
+const dispatch= useDispatch()
+
+const obj={
+    name:"subham",
+    age:25
+}
+
+<button onClick={()=>dispatch(handleAddToCart(obj))}>ADD</button>
+
+
+7 reducer.js
+export const cartData=(data=[],action)=>{
+
+}
+
+
+8 RootReducer.js
+import {combineReducers} from "redux"
+import {cartData} from "./reducers"
+
+export default combineReducers({
+    cartData
+})
